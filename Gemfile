@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 
 if ENV["HEROKU"]
-  ruby '2.0.0'
+  ruby '2.1.2'
 
   gem "pg"
   gem "thin" # Change this to another web server if you want (ie. unicorn, passenger, puma...)
   gem "rails_12factor"
 else
-
+ ruby '2.1.2'
   require 'yaml'
   env = ENV["RAILS_ENV"] || 'development'
   dbfile = File.expand_path("../config/database.yml", __FILE__)
@@ -38,6 +38,7 @@ else
   end
 end
 
+gem 'passenger' ,'4.0.53'
 gem 'rails', '~> 4.1.1'
 gem 'htmlentities'
 gem 'bluecloth', '~> 2.1'
