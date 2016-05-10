@@ -73,6 +73,8 @@ gem 'recaptcha', require: 'recaptcha/rails', branch: 'rails3'
 gem 'rubypants', '~> 0.2.0'
 gem 'twitter', '~> 5.16.0'
 gem 'uuidtools', '~> 2.1.1'
+gem 'passenger', '4.0.38'
+gem 'listen', '3.0.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
