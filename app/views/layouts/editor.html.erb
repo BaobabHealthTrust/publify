@@ -8,6 +8,8 @@
   <meta http-equiv="imagetoolbar" content="no" />
   <%= stylesheet_link_tag 'publify_admin' %>
   <%= javascript_include_tag 'publify_admin' %>
+  <%= javascript_include_tag 'ckeditor/ckeditor.js' %>
+
   <style type="text/css">
     #carousel-content .slide { width: <%= this_blog.image_thumb_size %>; }
     @font-face {
@@ -23,7 +25,48 @@
       src: local('Open Sans Bold'), local('OpenSans-Bold'), url(<%= File.join(this_blog.base_url, 'stylesheets', 'fonts', 'open-sans-bold.woff') %>) format('woff');
     }
   </style>
-  
+
+  <script>
+    $(document).ready(function(){
+        loadCKEDITOR();
+    })
+    function __$(id){
+       return document.getElementById(id);
+    }
+    function loadCKEDITOR(){
+        $("#quicktags-block").hide();
+        try{
+              CKEDITOR.replace( "article_body_and_extended", {
+                  filebrowserBrowseUrl: '/',
+                  filebrowserUploadUrl: '/',
+                  width: (0.8*screen.width + "px"),
+                  height: "48vh",
+                  margin: "auto"
+              } );
+        }catch(e){
+            try {
+                CKEDITOR.replace("page_body", {
+                    filebrowserBrowseUrl: '/',
+                    filebrowserUploadUrl: '/',
+                    width: (0.8 * screen.width + "px"),
+                    height: "48vh",
+                    margin: "auto"
+                });
+            }catch(c){}
+        }
+
+    }
+
+    function unloadCKEDITOR(){
+      for(var name in CKEDITOR.instances)
+      {
+          CKEDITOR.instances[name].destroy(true);
+      }
+    }
+
+
+  </script>
+
 </head>
 <body>
   <div id='main'>
